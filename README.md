@@ -29,7 +29,6 @@ const provision = async () => {
     plugin: HapiLocale,
     options: {
       locales: ['de', 'en'], // your supported locales
-      fallback: 'en',        // defaults to locales[0]
       query: 'lang',         // name of query param, defaults to 'locale'
       attribute: 'lang',     // name of target attribute, defaults to 'locale'
     }

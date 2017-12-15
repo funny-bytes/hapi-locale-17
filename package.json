@@ -39,6 +39,7 @@
     "sinon-chai": "^2.14.0"
   },
   "dependencies": {
-    "accept-language-parser": "^1.4.1"
+    "accept-language-parser": "^1.4.1",
+    "rind-locale": "0.0.3"
   }
 }

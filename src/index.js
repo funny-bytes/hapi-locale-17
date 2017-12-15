@@ -1,8 +1,9 @@
 const parser = require('accept-language-parser');
+const matcher = require('rind-locale');
 const pkg = require('../package.json');
 
 const register = (server, {
-  locales = ['en'], fallback = locales[0], query = 'locale', attribute = 'locale',
+  locales = [], fallback = locales[0], query = 'locale', attribute = 'locale',
 }) => {
   server.ext({
     type: 'onRequest',
@@ -11,9 +12,9 @@ const register = (server, {
         request[attribute] = value;
       };
       // 1. query parameter
-      const queryLocale = request.query[query];
-      if (queryLocale && locales.includes(queryLocale)) {
-        setLocale(queryLocale);
+      const queryParam = request.query[query];
+      if (queryParam) {
+        setLocale(matcher({ locales })(queryParam) || fallback);
         return h.continue;
       }
       // 2. http header
