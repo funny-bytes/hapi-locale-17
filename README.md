@@ -13,7 +13,7 @@ npm install --save hapi-locale-17
 
 ## Example
 
-```bash
+```js
 const Hapi = require('hapi');
 const HapiLocale = require('hapi-locale-17');
 
