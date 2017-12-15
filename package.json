@@ -1,6 +1,6 @@
 {
   "name": "hapi-locale-17",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Locale and language detection for HAPI v17+",
   "main": "src/index.js",
   "author": "Frank Thelen",
