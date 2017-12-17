@@ -1,15 +1,11 @@
 const Hapi = require('hapi');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
 const locale = require('../src/index');
 
 chai.use(chaiAsPromised);
-chai.use(sinonChai);
 
 global.chai = chai;
-global.sinon = sinon;
 global.expect = chai.expect;
 global.should = chai.should();
 
@@ -31,13 +27,13 @@ async function setup(options = {}) {
 describe('hapi-locale-17 with `locales` option', async () => {
   let server;
 
-  before(async () => {
+  beforeEach(async () => {
     server = await setup({
       locales: ['es', 'de', 'en'],
     });
   });
 
-  after(async () => {
+  afterEach(async () => {
     server.stop();
   });
 
@@ -50,7 +46,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
         },
       })
       .should.be.fulfilled.then((response) => {
-        expect(response.request.locale).to.be.equal('de');
+        expect(response.request.getLocale()).to.be.equal('de');
       });
   });
 
@@ -63,7 +59,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
         },
       })
       .should.be.fulfilled.then((response) => {
-        expect(response.request.locale).to.be.equal('de');
+        expect(response.request.getLocale()).to.be.equal('de');
       });
   });
 
@@ -76,18 +72,18 @@ describe('hapi-locale-17 with `locales` option', async () => {
         },
       })
       .should.be.fulfilled.then((response) => {
-        expect(response.request.locale).to.be.equal('es');
+        expect(response.request.getLocale()).to.be.equal('es');
       });
   });
 });
 
-describe('hapi-locale-17 with `attribute` option', async () => {
+describe('hapi-locale-17 with `method` option', async () => {
   let server;
 
   before(async () => {
     server = await setup({
       locales: ['de', 'en'],
-      attribute: 'lang',
+      method: 'getLang',
     });
   });
 
@@ -95,7 +91,7 @@ describe('hapi-locale-17 with `attribute` option', async () => {
     server.stop();
   });
 
-  it('should add user-defined attribute', () => {
+  it('should add user-defined method', () => {
     return server
       .inject({
         url: '/test',
@@ -104,8 +100,7 @@ describe('hapi-locale-17 with `attribute` option', async () => {
         },
       })
       .should.be.fulfilled.then((response) => {
-        expect(response.request.lang).to.be.equal('en');
-        expect(response.request.locale).to.be.undefined;
+        expect(response.request.getLang()).to.be.equal('en');
       });
   });
 });
@@ -117,7 +112,7 @@ describe('hapi-locale-17 with `query` option', async () => {
     server = await setup({
       locales: ['de', 'en'],
       query: 'lang',
-      attribute: 'lang',
+      method: 'getLang',
     });
   });
 
@@ -134,7 +129,47 @@ describe('hapi-locale-17 with `query` option', async () => {
         },
       })
       .should.be.fulfilled.then((response) => {
-        expect(response.request.lang).to.be.equal('de');
+        expect(response.request.getLang()).to.be.equal('de');
+      });
+  });
+});
+
+describe('hapi-locale-17 with locale option `en-US`', async () => {
+  let server;
+
+  before(async () => {
+    server = await setup({
+      locales: ['en-US', 'es'],
+    });
+  });
+
+  after(async () => {
+    server.stop();
+  });
+
+  it('should accept locale `en-US`', () => {
+    return server
+      .inject({
+        url: '/test',
+        headers: {
+          'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('en-US');
+      });
+  });
+
+  it('should accept locale `en-US` / query param', () => {
+    return server
+      .inject({
+        url: '/test?locale=en',
+        headers: {
+          'Accept-Language': 'es-ES,es;q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('en-US');
       });
   });
 });

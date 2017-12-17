@@ -3,30 +3,22 @@ const matcher = require('rind-locale');
 const pkg = require('../package.json');
 
 const register = (server, {
-  locales = [], fallback = locales[0], query = 'locale', attribute = 'locale',
+  locales = [], fallback = locales[0], query = 'locale', method = 'getLocale',
 }) => {
-  server.ext({
-    type: 'onRequest',
-    method: (request, h) => {
-      const setLocale = (value) => {
-        request[attribute] = value;
-      };
-      // 1. query parameter
-      const queryParam = request.query[query];
-      if (queryParam) {
-        setLocale(matcher({ locales })(queryParam) || fallback);
-        return h.continue;
-      }
-      // 2. http header
-      const acceptLanguage = request.headers['accept-language'];
-      if (acceptLanguage) {
-        setLocale(parser.pick(locales, acceptLanguage) || fallback);
-        return h.continue;
-      }
-      // 3. fallback
-      setLocale(fallback);
-      return h.continue;
-    },
+  server.decorate('request', method, function f() {
+    const request = this;
+    // 1. query parameter
+    const queryParam = request.query[query];
+    if (queryParam) {
+      return matcher({ locales })(queryParam) || fallback;
+    }
+    // 2. http header
+    const acceptLanguage = request.headers['accept-language'];
+    if (acceptLanguage) {
+      return parser.pick(locales, acceptLanguage) || fallback;
+    }
+    // 3. fallback
+    return fallback;
   });
 };
 

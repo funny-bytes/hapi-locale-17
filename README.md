@@ -2,11 +2,15 @@
 
 Locale and language detection for Hapi Server v17.
 
-Evaluates locale information from `accept-language` header and query parameter and attaches locale to `request.locale` available in all Hapi route handlers.
+Evaluates locale information from `accept-language` header and query parameter
+and decorates Hapi request object with `request.getLocale()`
+available in all route handlers.
 
-If a `locale` query parameter is provided, it has highest priority. Second priority is the `accept-language` http request header. Final priority is a fallback locale.
+If a `locale` query parameter is provided, it has highest priority.
+Second priority is the `accept-language` http request header.
+Final priority is a fallback locale.
 
-Target attribute `request.locale` and query parameter `locale` can be renamed.
+Method `request.getLocale()` and query parameter `locale` can be renamed.
 
 ## Install
 
@@ -15,6 +19,8 @@ npm install --save hapi-locale-17
 ```
 
 ## Example
+
+Register the plugin with Hapi server like this:
 
 ```js
 const Hapi = require('hapi');
@@ -30,11 +36,24 @@ const provision = async () => {
     options: {
       locales: ['de', 'en'], // your supported locales
       query: 'lang',         // name of query param, defaults to 'locale'
-      attribute: 'lang',     // name of target attribute, defaults to 'locale'
+      method: 'getLang',     // name of method, defaults to 'getLocale'
     }
   });
   await server.start();
 };
 
 provision();
+```
+
+In your route handler, do something like this:
+
+```js
+server.route({
+  method: 'GET',
+  path: '/test',
+  handler: function (request, h) {
+    const locale = request.getLocale();
+    // ...
+  }
+});
 ```
