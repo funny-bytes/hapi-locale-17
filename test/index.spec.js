@@ -13,19 +13,25 @@ async function setup(options = {}) {
   const server = new Hapi.Server({
     port: 9001,
   });
-  const test = {
+  const route1 = {
     method: 'GET',
     path: '/test',
     handler: () => 'ok',
   };
-  const test2 = {
+  const route2 = {
     method: 'GET',
     path: '/media/{locale}',
     handler: () => 'ok',
   };
+  const route3 = {
+    method: 'GET',
+    path: '/media2/{lang}',
+    handler: () => 'ok',
+  };
   await server.register({ plugin: locale, options });
-  await server.route(test);
-  await server.route(test2);
+  await server.route(route1);
+  await server.route(route2);
+  await server.route(route3);
   await server.start();
   return server;
 }
@@ -144,6 +150,7 @@ describe('hapi-locale-17 with `query` option', async () => {
     server = await setup({
       locales: ['de', 'en'],
       query: 'lang',
+      path: false,
       method: 'getLang',
     });
   });
@@ -152,10 +159,40 @@ describe('hapi-locale-17 with `query` option', async () => {
     server.stop();
   });
 
-  it('should accept user-defined query param', () => {
+  it('should accept user-defined query param `lang`', () => {
     return server
       .inject({
         url: '/test?lang=de',
+        headers: {
+          'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLang()).to.be.equal('de');
+      });
+  });
+});
+
+describe('hapi-locale-17 with `path` option', async () => {
+  let server;
+
+  before(async () => {
+    server = await setup({
+      locales: ['de', 'en'],
+      query: false,
+      path: 'lang',
+      method: 'getLang',
+    });
+  });
+
+  after(async () => {
+    server.stop();
+  });
+
+  it('should accept user-defined path param `lang`', () => {
+    return server
+      .inject({
+        url: '/media2/de',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },

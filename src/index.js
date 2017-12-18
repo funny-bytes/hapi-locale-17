@@ -6,7 +6,7 @@ const register = (server, {
   locales = [],
   fallback = locales[0],
   query = 'locale',
-  param = 'locale',
+  path = 'locale',
   method = 'getLocale',
 }) => {
   server.decorate('request', method, function f() {
@@ -16,9 +16,9 @@ const register = (server, {
       if (queryValue) {
         return matcher({ locales })(queryValue) || fallback;
       }
-      const paramValue = param ? request.params[param] : false;
-      if (paramValue) {
-        return matcher({ locales })(paramValue) || fallback;
+      const pathValue = path ? request.params[path] : false;
+      if (pathValue) {
+        return matcher({ locales })(pathValue) || fallback;
       }
       const headerValue = request.headers['accept-language'];
       if (headerValue) {

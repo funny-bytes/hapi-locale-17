@@ -58,11 +58,13 @@ server.route({
 });
 ```
 
-## Plugin Options
+## Options
+
+The plugin provides the following options:
 
 | Option    | Default     | Description |
 |-----------|-------------|-------------|
 | `locales` | `[]`        | Your list of supported locales, e.g., `['de', 'en']` or `['en-US', 'es-ES']`. |
 | `query`   | `locale`    | Name of query parameter to evaluate. Set to `false` to switch off. |
-| `param`   | `locale`    | Name of path parameter to evaluate. Set to `false` to switch off. |
+| `path`    | `locale`    | Name of path parameter to evaluate. Set to `false` to switch off. |
 | `method`  | `getLocale` | Name of method for request decoration, i.e., `request.getLocale()`. |
