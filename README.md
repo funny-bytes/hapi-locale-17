@@ -2,15 +2,17 @@
 
 Locale and language detection for Hapi Server v17.
 
-Evaluates locale information from `accept-language` header and query parameter
-and decorates Hapi request object with `request.getLocale()`
-available in all route handlers.
+Evaluates locale information from `accept-language` header and query or path parameter.
+Decorates Hapi request object with `request.getLocale()` available in all route handlers.
 
-If a `locale` query parameter is provided, it has highest priority.
-Second priority is the `accept-language` http request header.
-Final priority is a fallback locale.
+Priority of evaluation:
+(1) `locale` query parameter (if provided),
+(2) `locale` path parameter (if provided),
+(3) `accept-language` http request header,
+(4) fallback locale (the first locale in `locales` list).
 
-Method `request.getLocale()` and query parameter `locale` can be renamed.
+Decorated method `request.getLocale()` can be renamed.
+Query and path parameters `locale` can be renamed or switched off.
 
 ## Install
 
@@ -18,7 +20,7 @@ Method `request.getLocale()` and query parameter `locale` can be renamed.
 npm install --save hapi-locale-17
 ```
 
-## Example
+## Usage
 
 Register the plugin with Hapi server like this:
 
@@ -35,8 +37,6 @@ const provision = async () => {
     plugin: HapiLocale,
     options: {
       locales: ['de', 'en'], // your supported locales
-      query: 'lang',         // name of query param, defaults to 'locale'
-      method: 'getLang',     // name of method, defaults to 'getLocale'
     }
   });
   await server.start();
@@ -57,3 +57,12 @@ server.route({
   }
 });
 ```
+
+## Plugin Options
+
+| Option    | Default     | Description |
+|-----------|-------------|-------------|
+| `locales` | `[]`        | Your list of supported locales, e.g., `['de', 'en']` or `['en-US', 'es-ES']`. |
+| `query`   | `locale`    | Name of query parameter to evaluate. Set to `false` to switch off. |
+| `param`   | `locale`    | Name of path parameter to evaluate. Set to `false` to switch off. |
+| `method`  | `getLocale` | Name of method for request decoration, i.e., `request.getLocale()`. |

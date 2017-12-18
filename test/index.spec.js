@@ -18,8 +18,14 @@ async function setup(options = {}) {
     path: '/test',
     handler: () => 'ok',
   };
+  const test2 = {
+    method: 'GET',
+    path: '/media/{locale}',
+    handler: () => 'ok',
+  };
   await server.register({ plugin: locale, options });
   await server.route(test);
+  await server.route(test2);
   await server.start();
   return server;
 }
@@ -37,7 +43,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
     server.stop();
   });
 
-  it('should add `locale` to request with supported `de`', () => {
+  it('should provide `request.getLocale()` with supported `de`', () => {
     return server
       .inject({
         url: '/test',
@@ -50,7 +56,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
       });
   });
 
-  it('should add `locale` to request with supported `de` / query param', () => {
+  it('should provide `request.getLocale()` with supported `de` / query param', () => {
     return server
       .inject({
         url: '/test?locale=de',
@@ -63,10 +69,36 @@ describe('hapi-locale-17 with `locales` option', async () => {
       });
   });
 
-  it('should add `locale` to request with default `es` / query param with unsupported locale', () => {
+  it('should provide `request.getLocale()` with supported `de` / path param', () => {
+    return server
+      .inject({
+        url: '/media/de',
+        headers: {
+          'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('de');
+      });
+  });
+
+  it('should provide `request.getLocale()` with default `es` / query param with unsupported locale', () => {
     return server
       .inject({
         url: '/test?locale=tr',
+        headers: {
+          'Accept-Language': 'q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('es');
+      });
+  });
+
+  it('should provide `request.getLocale()` with default `es` / path param with unsupported locale', () => {
+    return server
+      .inject({
+        url: '/media/tr',
         headers: {
           'Accept-Language': 'q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
@@ -91,7 +123,7 @@ describe('hapi-locale-17 with `method` option', async () => {
     server.stop();
   });
 
-  it('should add user-defined method', () => {
+  it('should provide user-defined `request.getLang()`', () => {
     return server
       .inject({
         url: '/test',
