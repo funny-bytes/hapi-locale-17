@@ -1,5 +1,7 @@
 # hapi-locale-17
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/frankthelen/hapi-locale-17.svg)](https://greenkeeper.io/)
+
 Locale and language detection for Hapi Server v17.
 
 [![build status](https://img.shields.io/travis/frankthelen/hapi-locale-17.svg)](http://travis-ci.org/frankthelen/hapi-locale-17)
