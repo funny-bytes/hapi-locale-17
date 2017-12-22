@@ -54,93 +54,79 @@ describe('hapi-locale-17 with `locales` option', async () => {
     await server.stop();
   });
 
-  it('should provide `request.getLocale()` with supported `de`', () => {
-    return server
+  it('should provide `request.getLocale()` with supported `de`', () =>
+    server
       .inject({
         url: '/test',
         headers: {
           'Accept-Language': 'de-DE,de;q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('de');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('de')));
 
-  it('should provide `request.getLocale()` with supported `de` / query param', () => {
-    return server
+  it('should provide `request.getLocale()` with supported `de` / query param', () =>
+    server
       .inject({
         url: '/test?locale=de',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('de');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('de')));
 
-  it('should provide `request.getLocale()` with supported `de` / path param', () => {
-    return server
+  it('should provide `request.getLocale()` with supported `de` / path param', () =>
+    server
       .inject({
         url: '/media/de',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('de');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('de')));
 
-  it('should provide `request.getLocale()` with default `es` / query param with unsupported locale', () => {
-    return server
+  it('should provide `request.getLocale()` with default `es` / query param with unsupported locale', () =>
+    server
       .inject({
         url: '/test?locale=tr',
         headers: {
           'Accept-Language': 'q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('es');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('es')));
 
-  it('should provide `request.getLocale()` with default `es` / path param with unsupported locale', () => {
-    return server
+  it('should provide `request.getLocale()` with default `es` / path param with unsupported locale', () =>
+    server
       .inject({
         url: '/media/tr',
         headers: {
           'Accept-Language': 'q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('es');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('es')));
 
-  it('should provide `request.getLocale()` with default `es` / no indocation', () => {
-    return server
+  it('should provide `request.getLocale()` with default `es` / no indocation', () =>
+    server
       .inject({
         url: '/test',
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('es');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('es')));
 
-  it('should provide `request.getLocale()` with default `es` / invalid header', () => {
-    return server
+  it('should provide `request.getLocale()` with default `es` / invalid header', () =>
+    server
       .inject({
         url: '/test',
         headers: {
           'Accept-Language': 'cq#brw/hdbjhfd,bkaq8ö?347r;z12lekw:vmcöar-fvic',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('es');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('es')));
 });
 
 describe('hapi-locale-17 with `method` option', async () => {
@@ -157,18 +143,16 @@ describe('hapi-locale-17 with `method` option', async () => {
     await server.stop();
   });
 
-  it('should provide user-defined `request.getLang()`', () => {
-    return server
+  it('should provide user-defined `request.getLang()`', () =>
+    server
       .inject({
         url: '/test',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLang()).to.be.equal('en');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLang()).to.be.equal('en')));
 });
 
 describe('hapi-locale-17 with `query` option', async () => {
@@ -187,18 +171,16 @@ describe('hapi-locale-17 with `query` option', async () => {
     await server.stop();
   });
 
-  it('should accept user-defined query param `lang`', () => {
-    return server
+  it('should accept user-defined query param `lang`', () =>
+    server
       .inject({
         url: '/test?lang=de',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLang()).to.be.equal('de');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLang()).to.be.equal('de')));
 });
 
 describe('hapi-locale-17 with `path` option', async () => {
@@ -217,18 +199,16 @@ describe('hapi-locale-17 with `path` option', async () => {
     await server.stop();
   });
 
-  it('should accept user-defined path param `lang`', () => {
-    return server
+  it('should accept user-defined path param `lang`', () =>
+    server
       .inject({
         url: '/media2/de',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLang()).to.be.equal('de');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLang()).to.be.equal('de')));
 });
 
 describe('hapi-locale-17 with locale option `en-US`', async () => {
@@ -244,31 +224,27 @@ describe('hapi-locale-17 with locale option `en-US`', async () => {
     await server.stop();
   });
 
-  it('should accept locale `en-US`', () => {
-    return server
+  it('should accept locale `en-US`', () =>
+    server
       .inject({
         url: '/test',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('en-US');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('en-US')));
 
-  it('should accept locale `en-US` / query param', () => {
-    return server
+  it('should accept locale `en-US` / query param', () =>
+    server
       .inject({
         url: '/test?locale=en',
         headers: {
           'Accept-Language': 'es-ES,es;q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('en-US');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('en-US')));
 });
 
 describe('hapi-locale-17 with error in dependency', async () => {
@@ -286,16 +262,14 @@ describe('hapi-locale-17 with error in dependency', async () => {
     parser.pick.restore();
   });
 
-  it('should catch error and return default locale', () => {
-    return server
+  it('should catch error and return default locale', () =>
+    server
       .inject({
         url: '/test',
         headers: {
           'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
         },
       })
-      .should.be.fulfilled.then((response) => {
-        expect(response.request.getLocale()).to.be.equal('en');
-      });
-  });
+      .should.be.fulfilled.then(response =>
+        expect(response.request.getLocale()).to.be.equal('en')));
 });
