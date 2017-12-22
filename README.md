@@ -1,8 +1,9 @@
+[![build status](https://img.shields.io/travis/frankthelen/hapi-locale-17.svg)](http://travis-ci.org/frankthelen/hapi-locale-17)
+[![Coverage Status](https://img.shields.io/coveralls/frankthelen/hapi-locale-17/dev.svg)](https://coveralls.io/r/frankthelen/hapi-locale-17)
+
 # hapi-locale-17
 
 Locale and language detection for Hapi Server v17.
-
-[![build status](https://img.shields.io/travis/frankthelen/hapi-locale-17.svg)](http://travis-ci.org/frankthelen/hapi-locale-17)
 
 Evaluates locale information from `accept-language` header and query or path parameter.
 Decorates Hapi request object with `request.getLocale()` available in all route handlers.

@@ -1,11 +1,16 @@
 const Hapi = require('hapi');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+const parser = require('accept-language-parser'); // to be mocked
 const locale = require('../src/index');
 
 chai.use(chaiAsPromised);
+chai.use(sinonChai);
 
 global.chai = chai;
+global.sinon = sinon;
 global.expect = chai.expect;
 global.should = chai.should();
 
@@ -46,7 +51,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
   });
 
   afterEach(async () => {
-    server.stop();
+    await server.stop();
   });
 
   it('should provide `request.getLocale()` with supported `de`', () => {
@@ -113,6 +118,29 @@ describe('hapi-locale-17 with `locales` option', async () => {
         expect(response.request.getLocale()).to.be.equal('es');
       });
   });
+
+  it('should provide `request.getLocale()` with default `es` / no indocation', () => {
+    return server
+      .inject({
+        url: '/test',
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('es');
+      });
+  });
+
+  it('should provide `request.getLocale()` with default `es` / invalid header', () => {
+    return server
+      .inject({
+        url: '/test',
+        headers: {
+          'Accept-Language': 'cq#brw/hdbjhfd,bkaq8ö?347r;z12lekw:vmcöar-fvic',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('es');
+      });
+  });
 });
 
 describe('hapi-locale-17 with `method` option', async () => {
@@ -126,7 +154,7 @@ describe('hapi-locale-17 with `method` option', async () => {
   });
 
   after(async () => {
-    server.stop();
+    await server.stop();
   });
 
   it('should provide user-defined `request.getLang()`', () => {
@@ -156,7 +184,7 @@ describe('hapi-locale-17 with `query` option', async () => {
   });
 
   after(async () => {
-    server.stop();
+    await server.stop();
   });
 
   it('should accept user-defined query param `lang`', () => {
@@ -186,7 +214,7 @@ describe('hapi-locale-17 with `path` option', async () => {
   });
 
   after(async () => {
-    server.stop();
+    await server.stop();
   });
 
   it('should accept user-defined path param `lang`', () => {
@@ -213,7 +241,7 @@ describe('hapi-locale-17 with locale option `en-US`', async () => {
   });
 
   after(async () => {
-    server.stop();
+    await server.stop();
   });
 
   it('should accept locale `en-US`', () => {
@@ -239,6 +267,35 @@ describe('hapi-locale-17 with locale option `en-US`', async () => {
       })
       .should.be.fulfilled.then((response) => {
         expect(response.request.getLocale()).to.be.equal('en-US');
+      });
+  });
+});
+
+describe('hapi-locale-17 with error in dependency', async () => {
+  let server;
+
+  before(async () => {
+    server = await setup({
+      locales: ['en', 'es'],
+    });
+    sinon.stub(parser, 'pick').throws('Error');
+  });
+
+  after(async () => {
+    await server.stop();
+    parser.pick.restore();
+  });
+
+  it('should catch error and return default locale', () => {
+    return server
+      .inject({
+        url: '/test',
+        headers: {
+          'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+        },
+      })
+      .should.be.fulfilled.then((response) => {
+        expect(response.request.getLocale()).to.be.equal('en');
       });
   });
 });

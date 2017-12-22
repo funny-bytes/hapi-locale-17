@@ -4,12 +4,12 @@ const pkg = require('../package.json');
 
 const register = (server, {
   locales = [],
-  fallback = locales[0],
   query = 'locale',
   path = 'locale',
   method = 'getLocale',
 }) => {
   server.decorate('request', method, function f() {
+    const fallback = locales[0];
     const request = this;
     try {
       const queryValue = query ? request.query[query] : false;
