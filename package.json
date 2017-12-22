@@ -4,7 +4,7 @@
   "description": "Locale and language detection for Hapi v17",
   "main": "src/index.js",
   "author": "Frank Thelen",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/frankthelen/hapi-locale-17"
