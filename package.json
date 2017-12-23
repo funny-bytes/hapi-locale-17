@@ -42,6 +42,9 @@
     "sinon": "^4.1.3",
     "sinon-chai": "^2.14.0"
   },
+  "peerDependencies": {
+    "hapi": ">=17.x.x"
+  },
   "dependencies": {
     "accept-language-parser": "^1.4.1",
     "rind-locale": "~0.0.3"
