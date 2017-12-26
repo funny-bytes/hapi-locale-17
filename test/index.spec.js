@@ -247,7 +247,7 @@ describe('hapi-locale-17 with locale option `en-US`', async () => {
         expect(response.request.getLocale()).to.be.equal('en-US')));
 });
 
-describe('hapi-locale-17 with error in dependency', async () => {
+describe('hapi-locale-17 with error thrown by `accept-language-parser`', async () => {
   let server;
 
   before(async () => {
@@ -262,7 +262,7 @@ describe('hapi-locale-17 with error in dependency', async () => {
     parser.pick.restore();
   });
 
-  it('should catch error and return default locale', () =>
+  it('should not fail and return default locale', () =>
     server
       .inject({
         url: '/test',

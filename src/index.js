@@ -24,8 +24,8 @@ const register = (server, {
       if (headerValue) {
         return parser.pick(locales, headerValue) || fallback;
       }
-    } catch (err) {
-      request.log(['err', 'error'], err);
+    } catch (error) {
+      request.log(['error'], error);
     }
     return fallback;
   });
