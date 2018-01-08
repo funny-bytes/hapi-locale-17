@@ -7,6 +7,7 @@ Locale and language detection for Hapi Server v17.
 [![dependencies Status](https://david-dm.org/frankthelen/hapi-locale-17/status.svg)](https://david-dm.org/frankthelen/hapi-locale-17)
 [![Greenkeeper badge](https://badges.greenkeeper.io/frankthelen/hapi-locale-17.svg)](https://greenkeeper.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b21f79b2657870c146f/maintainability)](https://codeclimate.com/github/frankthelen/hapi-locale-17/maintainability)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffrankthelen%2Fhapi-locale-17.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffrankthelen%2Fhapi-locale-17?ref=badge_shield)
 [![node](https://img.shields.io/node/v/hapi-locale-17.svg)]()
 [![License Status](http://img.shields.io/npm/l/hapi-locale-17.svg)]()
 
