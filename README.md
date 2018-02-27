@@ -7,7 +7,6 @@ Locale and language detection for Hapi Server v17.
 [![Dependency Status](https://gemnasium.com/badges/github.com/frankthelen/hapi-locale-17.svg)](https://gemnasium.com/github.com/frankthelen/hapi-locale-17)
 [![Greenkeeper badge](https://badges.greenkeeper.io/frankthelen/hapi-locale-17.svg)](https://greenkeeper.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b21f79b2657870c146f/maintainability)](https://codeclimate.com/github/frankthelen/hapi-locale-17/maintainability)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffrankthelen%2Fhapi-locale-17.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffrankthelen%2Fhapi-locale-17?ref=badge_shield)
 [![node](https://img.shields.io/node/v/hapi-locale-17.svg)]()
 [![code style](https://img.shields.io/badge/code_style-airbnb-brightgreen.svg)](https://github.com/airbnb/javascript)
 [![License Status](http://img.shields.io/npm/l/hapi-locale-17.svg)]()
@@ -27,7 +26,7 @@ Query and path parameters `locale` can be renamed or switched off.
 ## Install
 
 ```bash
-npm install --save hapi-locale-17
+npm install hapi-locale-17
 ```
 
 ## Usage
