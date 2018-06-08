@@ -4,7 +4,7 @@ Locale and language detection for Hapi Server v17.
 
 [![build status](https://img.shields.io/travis/frankthelen/hapi-locale-17.svg)](http://travis-ci.org/frankthelen/hapi-locale-17)
 [![Coverage Status](https://coveralls.io/repos/github/frankthelen/hapi-locale-17/badge.svg?branch=master)](https://coveralls.io/github/frankthelen/hapi-locale-17?branch=master)
-[![Dependency Status](https://gemnasium.com/badges/github.com/frankthelen/hapi-locale-17.svg)](https://gemnasium.com/github.com/frankthelen/hapi-locale-17)
+[![devDependencies Status](https://david-dm.org/frankthelen/hapi-locale-17/dev-status.svg)](https://david-dm.org/frankthelen/hapi-locale-17?type=dev)
 [![Greenkeeper badge](https://badges.greenkeeper.io/frankthelen/hapi-locale-17.svg)](https://greenkeeper.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b21f79b2657870c146f/maintainability)](https://codeclimate.com/github/frankthelen/hapi-locale-17/maintainability)
 [![node](https://img.shields.io/node/v/hapi-locale-17.svg)]()
