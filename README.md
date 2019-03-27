@@ -1,6 +1,6 @@
 # hapi-locale-17
 
-Locale and language detection for Hapi Server v17.
+Locale and language detection for Hapi Server v17 and v18.
 
 [![Build Status](https://travis-ci.org/frankthelen/hapi-locale-17.svg?branch=master)](https://travis-ci.org/frankthelen/hapi-locale-17)
 [![Coverage Status](https://coveralls.io/repos/github/frankthelen/hapi-locale-17/badge.svg?branch=master)](https://coveralls.io/github/frankthelen/hapi-locale-17?branch=master)
