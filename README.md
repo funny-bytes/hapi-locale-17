@@ -34,7 +34,7 @@ npm install hapi-locale-17
 Register the plugin with Hapi server like this:
 
 ```js
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 const HapiLocale = require('hapi-locale-17');
 
 const server = new Hapi.Server({
