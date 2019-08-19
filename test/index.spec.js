@@ -62,7 +62,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('de')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('de')));
 
   it('should provide `request.getLocale()` with supported `de` / query param', () => server
     .inject({
@@ -72,7 +72,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('de')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('de')));
 
   it('should provide `request.getLocale()` with supported `de` / path param', () => server
     .inject({
@@ -82,7 +82,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('de')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('de')));
 
   it('should provide `request.getLocale()` with default `es` / query param with unsupported locale', () => server
     .inject({
@@ -92,7 +92,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('es')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('es')));
 
   it('should provide `request.getLocale()` with default `es` / path param with unsupported locale', () => server
     .inject({
@@ -102,14 +102,14 @@ describe('hapi-locale-17 with `locales` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('es')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('es')));
 
   it('should provide `request.getLocale()` with default `es` / no indocation', () => server
     .inject({
       url: '/test',
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('es')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('es')));
 
   it('should provide `request.getLocale()` with default `es` / invalid header', () => server
     .inject({
@@ -119,7 +119,7 @@ describe('hapi-locale-17 with `locales` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('es')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('es')));
 });
 
 describe('hapi-locale-17 with `method` option', async () => {
@@ -144,7 +144,7 @@ describe('hapi-locale-17 with `method` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLang()).to.be.equal('en')));
+    .then((response) => expect(response.request.getLang()).to.be.equal('en')));
 });
 
 describe('hapi-locale-17 with `query` option', async () => {
@@ -171,7 +171,7 @@ describe('hapi-locale-17 with `query` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLang()).to.be.equal('de')));
+    .then((response) => expect(response.request.getLang()).to.be.equal('de')));
 });
 
 describe('hapi-locale-17 with `path` option', async () => {
@@ -198,7 +198,7 @@ describe('hapi-locale-17 with `path` option', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLang()).to.be.equal('de')));
+    .then((response) => expect(response.request.getLang()).to.be.equal('de')));
 });
 
 describe('hapi-locale-17 with locale option `en-US`', async () => {
@@ -222,7 +222,7 @@ describe('hapi-locale-17 with locale option `en-US`', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('en-US')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('en-US')));
 
   it('should accept locale `en-US` / query param', () => server
     .inject({
@@ -232,7 +232,7 @@ describe('hapi-locale-17 with locale option `en-US`', async () => {
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('en-US')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('en-US')));
 });
 
 describe('hapi-locale-17 with error thrown by `accept-language-parser`', async () => {
@@ -258,5 +258,5 @@ describe('hapi-locale-17 with error thrown by `accept-language-parser`', async (
       },
     })
     .should.be.fulfilled
-    .then(response => expect(response.request.getLocale()).to.be.equal('en')));
+    .then((response) => expect(response.request.getLocale()).to.be.equal('en')));
 });
