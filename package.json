@@ -27,7 +27,7 @@
     "node": ">=8.9.0"
   },
   "devDependencies": {
-    "@hapi/hapi": "^18.3.2",
+    "@hapi/hapi": "^19.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.6",
