@@ -1,10 +1,10 @@
-const Hapi = require('@hapi/hapi');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const parser = require('accept-language-parser'); // to be mocked
-const locale = require('../src/index');
+const semver = require('semver');
+const locale = require('../src/index'); // eslint-disable-line import/order
 
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
@@ -13,6 +13,13 @@ global.chai = chai;
 global.sinon = sinon;
 global.expect = chai.expect;
 global.should = chai.should();
+
+const nodeVersion = process.version;
+const node12 = semver.satisfies(nodeVersion, '>=12.x.x');
+const Hapi = node12 ? require('hapi19') : require('hapi18');
+
+// eslint-disable-next-line no-console
+console.log(`Testing Node ${nodeVersion} and Hapi ${node12 ? '19' : '18'}`);
 
 async function setup(options = {}) {
   const server = new Hapi.Server({
