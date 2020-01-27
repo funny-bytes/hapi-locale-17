@@ -23,6 +23,10 @@ Priority of evaluation:
 Decorated method `request.getLocale()` can be renamed.
 Query and path parameters `locale` can be renamed or switched off.
 
+Tested with
+* Node 12/13, Hapi 19
+* Node 10, Hapi 18
+
 ## Install
 
 ```bash
