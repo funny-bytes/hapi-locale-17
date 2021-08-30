@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "lint": "eslint . --ignore-path ./.eslintignore",
-    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text-summary mocha --exit --recursive test",
+    "test": "jest --coverage test/*",
     "coveralls": "nyc report --reporter=lcovonly && cat ./coverage/lcov.info | coveralls",
     "preversion": "npm run lint && npm test"
   },
@@ -26,22 +26,17 @@
     "node": ">=10.x.x"
   },
   "devDependencies": {
-    "chai": "^4.3.4",
-    "chai-as-promised": "^7.1.1",
     "coveralls": "^3.1.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-should-promised": "^2.0.0",
     "hapi18": "npm:@hapi/hapi@^18.4.0",
     "hapi19": "npm:@hapi/hapi@^19.2.0",
     "hapi20": "npm:@hapi/hapi@^20.0.3",
-    "mocha": "^9.0.3",
-    "nyc": "^15.1.0",
-    "semver": "^7.3.5",
-    "sinon": "^11.1.2",
-    "sinon-chai": "^3.7.0"
+    "jest": "^27.1.0",
+    "semver": "^7.3.5"
   },
   "peerDependencies": {
     "@hapi/hapi": ">=17.x.x"
