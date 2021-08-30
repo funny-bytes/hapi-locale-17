@@ -2,10 +2,10 @@
 
 Locale and language detection for Hapi Server.
 
-[![Build Status](https://travis-ci.org/frankthelen/hapi-locale-17.svg?branch=master)](https://travis-ci.org/frankthelen/hapi-locale-17)
-[![Coverage Status](https://coveralls.io/repos/github/frankthelen/hapi-locale-17/badge.svg?branch=master)](https://coveralls.io/github/frankthelen/hapi-locale-17?branch=master)
-[![devDependencies Status](https://david-dm.org/frankthelen/hapi-locale-17/status.svg)](https://david-dm.org/frankthelen/hapi-locale-17)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2b21f79b2657870c146f/maintainability)](https://codeclimate.com/github/frankthelen/hapi-locale-17/maintainability)
+![main workflow](https://github.com/funny-bytes/hapi-locale-17/actions/workflows/main.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/funny-bytes/hapi-locale-17/badge.svg?branch=master)](https://coveralls.io/github/funny-bytes/hapi-locale-17?branch=master)
+[![dependencies Status](https://david-dm.org/funny-bytes/hapi-locale-17/status.svg)](https://david-dm.org/funny-bytes/hapi-locale-17)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2b21f79b2657870c146f/maintainability)](https://codeclimate.com/github/funny-bytes/hapi-locale-17/maintainability)
 [![node](https://img.shields.io/node/v/hapi-locale-17.svg)]()
 [![code style](https://img.shields.io/badge/code_style-airbnb-brightgreen.svg)](https://github.com/airbnb/javascript)
 [![License Status](http://img.shields.io/npm/l/hapi-locale-17.svg)]()
