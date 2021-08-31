@@ -26,5 +26,7 @@ jobs:
       - run: npm test
       - name: Coveralls
         uses: coverallsapp/github-action@master
+        env:
+          NODE_COVERALLS_DEBUG: 1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
