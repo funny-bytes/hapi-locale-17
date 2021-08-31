@@ -3,7 +3,7 @@
 Locale and language detection for Hapi Server.
 
 ![main workflow](https://github.com/funny-bytes/hapi-locale-17/actions/workflows/main.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/funny-bytes/hapi-locale-17/badge.svg)](https://coveralls.io/github/funny-bytes/hapi-locale-17?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/funny-bytes/hapi-locale-17/badge.svg)](https://coveralls.io/github/funny-bytes/hapi-locale-17)
 [![dependencies Status](https://david-dm.org/funny-bytes/hapi-locale-17/status.svg)](https://david-dm.org/funny-bytes/hapi-locale-17)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b21f79b2657870c146f/maintainability)](https://codeclimate.com/github/funny-bytes/hapi-locale-17/maintainability)
 [![node](https://img.shields.io/node/v/hapi-locale-17.svg)]()
