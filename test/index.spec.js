@@ -271,7 +271,9 @@ hapiVersions.forEach((hapiVersion) => {
               'Accept-Language': 'en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
             },
           });
-        expect(response.request.getLocale()).toEqual('en');
+        expect(
+          response.request.getLocale(),
+        ).toEqual('en');
       });
     });
   });
