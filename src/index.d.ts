@@ -1,17 +1,18 @@
 import { Plugin, Request } from '@hapi/hapi';
 
 declare module '@hapi/hapi' {
-  // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/hapi__hapi/index.d.ts#L97
   interface PluginSpecificConfiguration {
     'hapi-locale-17'?: hapilocale17.RouteOptions;
   }
+}
 
+declare module '@hapi/hapi' {
   interface Request {
-    getLocale: () => string;
+    getLocale(): string;
   }
 }
 
-declare namespace hapilocale17 {
+export namespace hapilocale17 {
 
   interface RegisterOptions {
     locales?: string[];
@@ -28,4 +29,4 @@ declare namespace hapilocale17 {
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 declare const hapilocale17: Plugin<hapilocale17.RegisterOptions>;
 
-export = hapilocale17;
+export default hapilocale17;
