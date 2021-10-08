@@ -3,6 +3,7 @@
   "version": "2.0.28",
   "description": "Locale and language detection for Hapi v17",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "author": "Frank Thelen",
   "license": "MIT",
   "repository": {
@@ -25,6 +26,8 @@
     "node": ">=10.x.x"
   },
   "devDependencies": {
+    "@hapi/hapi": "^20.2.0",
+    "@types/hapi__hapi": "^20.0.9",
     "coveralls": "^3.1.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
