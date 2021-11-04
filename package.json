@@ -23,7 +23,7 @@
     "preversion": "npm run lint && npm test"
   },
   "engines": {
-    "node": ">=10.x.x"
+    "node": ">=12.x.x"
   },
   "devDependencies": {
     "@hapi/hapi": "^20.2.1",
