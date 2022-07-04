@@ -26,20 +26,20 @@
     "node": ">=12.x.x"
   },
   "devDependencies": {
-    "@hapi/hapi": "^20.2.1",
-    "@types/hapi__hapi": "^20.0.9",
+    "@hapi/hapi": "^20.2.2",
+    "@types/hapi__hapi": "^20.0.12",
     "ansi-regex": "^6.0.1",
     "coveralls": "^3.1.1",
-    "eslint": "^8.1.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-promise": "^5.1.1",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-should-promised": "^2.0.0",
     "hapi18": "npm:@hapi/hapi@^18.4.0",
     "hapi19": "npm:@hapi/hapi@^19.2.0",
     "hapi20": "npm:@hapi/hapi@^20.0.3",
-    "jest": "^27.3.1",
-    "semver": "^7.3.5",
+    "jest": "^28.1.2",
+    "semver": "^7.3.7",
     "tmpl": "^1.0.5"
   },
   "peerDependencies": {
