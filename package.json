@@ -1,6 +1,6 @@
 {
   "name": "hapi-locale-17",
-  "version": "2.0.30",
+  "version": "2.0.31",
   "description": "Locale and language detection for Hapi v17",
   "main": "src/index.js",
   "types": "src/index.d.ts",
