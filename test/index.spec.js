@@ -1,11 +1,7 @@
 const parser = require('accept-language-parser'); // to be mocked
-const semver = require('semver');
 const locale = require('..');
 
-const nodeVersion = process.version;
-const hapiVersions = semver.satisfies(nodeVersion, '>=12.x.x')
-  ? ['hapi18', 'hapi19', 'hapi20']
-  : ['hapi18'];
+const hapiVersions = ['hapi20', 'hapi21'];
 
 hapiVersions.forEach((hapiVersion) => {
   // eslint-disable-next-line import/no-dynamic-require, global-require

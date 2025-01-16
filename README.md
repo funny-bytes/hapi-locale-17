@@ -24,8 +24,7 @@ Query and path parameters `locale` can be renamed or switched off.
 
 Tested with
 
-* Hapi 18/19/20 on Node 12/14/15
-* Hapi 18 on Node 10
+* Hapi 20/21 on Node 22
 
 ## Install
 
