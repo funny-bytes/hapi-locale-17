@@ -72,7 +72,7 @@ server.route({
 
 ## Options
 
-The plugin provides the following options:
+The plugin provides the following init options:
 
 | Option    | Default     | Description |
 |-----------|-------------|-------------|
@@ -80,3 +80,9 @@ The plugin provides the following options:
 | `query`   | `locale`    | Name of query parameter to evaluate. Set to `false` to switch off. |
 | `path`    | `locale`    | Name of path parameter to evaluate. Set to `false` to switch off. |
 | `method`  | `getLocale` | Name of method for request decoration, i.e., `request.getLocale()`. |
+
+In addition, it is possible change the list of supported locales via `server.setLocales()`, e.g.:
+
+```js
+server.setLocales(['de', 'en', 'es']);
+```
