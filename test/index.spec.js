@@ -272,5 +272,39 @@ hapiVersions.forEach((hapiVersion) => {
         ).toEqual('en');
       });
     });
+
+    describe('hapi-locale-17 with changing supported locales via server.setLocates()', () => {
+      let server;
+
+      beforeEach(async () => {
+        server = await setup({
+          locales: ['en'],
+        });
+      });
+
+      afterEach(async () => {
+        await server.stop();
+      });
+
+      it('should change defined locales', async () => {
+        const response = await server
+          .inject({
+            url: '/test',
+            headers: {
+              'Accept-Language': 'de-DE,de;q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+            },
+          });
+        expect(response.request.getLocale()).toEqual('en');
+        server.setLocales(['en', 'de']);
+        const response2 = await server
+          .inject({
+            url: '/test',
+            headers: {
+              'Accept-Language': 'de-DE,de;q=0.9,en-GB;q=0.8,en-US;q=0.7,en;q=0.6',
+            },
+          });
+        expect(response2.request.getLocale()).toEqual('de');
+      });
+    });
   });
 });

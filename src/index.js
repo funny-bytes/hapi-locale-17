@@ -8,21 +8,26 @@ const register = (server, {
   path = 'locale',
   method = 'getLocale',
 }) => {
+  let localesSupported = locales;
+  // eslint-disable-next-line prefer-arrow-callback
+  server.decorate('server', 'setLocales', function f(localesChange = []) {
+    localesSupported = localesChange;
+  });
   server.decorate('request', method, function f() {
-    const fallback = locales[0];
+    const fallback = localesSupported[0];
     const request = this;
     try {
       const queryValue = query ? request.query[query] : false;
       if (queryValue) {
-        return matcher({ locales })(queryValue) || fallback;
+        return matcher({ locales: localesSupported })(queryValue) || fallback;
       }
       const pathValue = path ? request.params[path] : false;
       if (pathValue) {
-        return matcher({ locales })(pathValue) || fallback;
+        return matcher({ locales: localesSupported })(pathValue) || fallback;
       }
       const headerValue = request.headers['accept-language'];
       if (headerValue) {
-        return parser.pick(locales, headerValue) || fallback;
+        return parser.pick(localesSupported, headerValue) || fallback;
       }
     } catch (error) {
       request.log(['error'], error);

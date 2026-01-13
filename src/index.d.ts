@@ -4,11 +4,11 @@ declare module '@hapi/hapi' {
   interface PluginSpecificConfiguration {
     'hapi-locale-17'?: hapilocale17.RouteOptions;
   }
-}
-
-declare module '@hapi/hapi' {
   interface Request {
     getLocale(): string;
+  }
+  interface Server {
+    setLocales(locales: string[]): void;
   }
 }
 
